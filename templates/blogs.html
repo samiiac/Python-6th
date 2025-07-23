@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | All Blogs</title>
+  </head>
+  <body>
+    {% include 'commons/header.html' %}
+    <h1>All Blogs</h1>
+    {% if blogs %}
+    {% for blog in blogs %}
+    <a href="{% url 'blog-detail' blog.id %}" style="text-decoration:none;color:black">
+      <div>
+       <span>{{forloop.counter}}</span> <h2>{{blog.title}}</h2>
+        <h4>{{blog.sub_title}}</h4>
+      </div>
+      </a>
+    {% endfor %}
+    {% endif %}
+  </body>
+</html>

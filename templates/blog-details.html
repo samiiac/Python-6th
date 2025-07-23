@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | {{blog_detail.id}}</title>
+</head>
+<body>
+    {% if blog_detail %}
+    <div>
+        <h1>{{blog_detail.title}}</h1>
+        <h3>{{blog_detail.sub_title}}</h3>
+        <img height='200' width='200' src="{{blog_detail.image.url}}" alt="{{blog_detail.title}}">
+        <p>{{blog_detail.body}}</p>
+      </div>
+    {% endif %}
+</body>
+</html>
