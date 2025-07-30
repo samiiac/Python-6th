@@ -1,25 +1,13 @@
 from django.shortcuts import render
+from calculator.models import CalculatorHistory
 
 # Create your views here.
 
 
 def calcIndex(request):
-    # result = None
-    # number_a = ''
-    # number_b = ''
-
-    # if request.method == 'POST':
-    #     try:
-    #         number_a = float(request.POST.get('number_a',0))
-    #         number_b = float(request.POST.get('number_b',0))
-    #         result = number_a + number_b
-    #     except(ValueError,TypeError):
-    #         result = 'Invalid input'
-    #     return render(request,'calc.html',{ 'sum':result})
-
-    # return render(request,'calc.html')
 
     context = {}
+    data ={}
 
     if request.method == "POST":
         form_data = request.POST
@@ -30,36 +18,65 @@ def calcIndex(request):
 
         # print(f"a:{number_a} b:{number_b}")
 
-        if number_a.isnumeric() and number_b.isnumeric():
+      
+        try:
             number_a = float(number_a)
             number_b = float(number_b)
+            
+            data.update({
+                'number_a':number_a,
+                'number_b':number_b
+            })
+            
+            action=""
+            message=""
 
             if "add" in operation:
+                
                 total = number_a + number_b
-                context.update(
-                    message=f"Addition of {number_a} and {number_b} is : {total}"
-                )
+                action='add'
+                message=f"Addition of {number_a} and {number_b} is : {total}"
+                
+                
             elif "sub" in operation:
+                action='sub'
                 total = number_a - number_b
-                context.update(
-                    message=f"Subtraction of {number_a} and {number_b} is : {total}"
-                )
+                message=f"Subtraction of {number_a} and {number_b} is : {total}" 
+                
             elif "multi" in operation:
+                action="multi"
                 total = number_a * number_b
-                context.update(
-                    message=f"Product of {number_a} and {number_b} is : {total}"
-                )
+                message=f"Product of {number_a} and {number_b} is : {total}"
+                
+                
             elif "div" in operation:
+                action='div'
                 if number_b == 0:
-                    context.update(
                     message=f"Denominator must be nonzero!"
-                )
+                  
                 else:
                     total = number_a / number_b
-                    context.update(
-                    message=f"Quotient of {number_a} and {number_b} is : {total}"
-                )
+                    message=f"Quotient of {number_a} and {number_b} is : {total}"  
+                    
+                
+            context.update({
+                'message' : message
+            })
+            
+            data.update({
+                'operation':action,
+                'operation_status':'success',
+                'result':message
+            })
+            
+            CalculatorHistory.objects.create(**data)
+            
+        except(ValueError , TypeError):
+            context.update({
+                'message':'Please enter valid numbers'
+            })
+            
 
-        else:
-            context.update(message="You need to pass numeric values!")
     return render(request, "calc.html", context)
+
+

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc~</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <button><a href="{% url 'calc-list' %}">List Page</a></button> 
+    <div class="container">
+    <table>
+
+        <thead>
+           <th>Id</th>
+           <th>Number A</th>
+           <th>Number B</th>
+           <th>Operation</th>
+           <th>Status</th>
+           <th>Result</th>
+        </thead>
+
+        <tbody>
+            {% for i in object_list %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{i.number_a}}</td>
+              <td>{{i.number_b}}</td>
+              <td>{{i.operation}}</td>
+              <td>{{i.operation_status}}</td>
+              <td>{{i.result}}</td>
+
+              <td>
+               <button><a href="{% url 'calc-update' i.pk %}">Edit</a></button> 
+
+                <button> <a href="{% url 'calc-delete' i.pk %}">Delete</a></button> 
+              </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    </div>
+</body>
+</html>

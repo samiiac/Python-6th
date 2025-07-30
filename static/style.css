@@ -1,0 +1,47 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(1, 0, 0);
+    color:white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding:10px 10px;
+}
+
+table,thead,td,tr,th{
+    border-collapse: collapse;
+    border: 1px solid rgba(241, 239, 239, 0.548);
+    padding:10px 10px;
+    color:rgb(41, 40, 39);
+    
+}
+
+
+.container{
+    background-color: rgba(252, 252, 252, 0.53);
+    padding:15px 15px;
+    width:fit-content;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 1px 1px 3px 2px rgb(98, 106, 113);
+    margin-top: 10px;
+    
+
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+button{
+    border:none;
+    outline:none;
+    height:40px;
+    width:70px;
+    border-radius: 12px;
+}
+
