@@ -1,0 +1,8 @@
+ {% load static %}
+ 
+ <head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+ </head>
+ 
+ <button><a href="{% url 'calc-list' %}">List Page</a></button> 
+ <button><a href="{% url 'calc-create' %}">Add new</a></button>
