@@ -6,12 +6,15 @@
     <title>Blog | {{blog_detail.id}}</title>
 </head>
 <body>
-    {% if blog_detail %}
+    {% if object_list %}
     <div>
-        <h1>{{blog_detail.title}}</h1>
-        <h3>{{blog_detail.sub_title}}</h3>
-        <img height='200' width='200' src="{{blog_detail.image.url}}" alt="{{blog_detail.title}}">
-        <p>{{blog_detail.body}}</p>
+        <h1>{{object_list.title}}</h1>
+        <h3>{{object_list.sub_title}}</h3>
+        <img height='200' width='200' src="{{object_list.image.url}}" alt="{{object_list.title}}">
+        <p>{{object_list.body}}</p>
+
+        <button><a href=" {% url 'update-blog' object_list.id %}">Edit</a></button>
+        <button><a href=" {% url 'delete-blog'object_list.id %}">Delete</a></button>
       </div>
     {% endif %}
 </body>

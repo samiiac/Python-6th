@@ -7,16 +7,20 @@
   </head>
   <body>
     {% include 'commons/header.html' %}
-    <h1>All Blogs</h1>
-    {% if blogs %}
-    {% for blog in blogs %}
-    <a href="{% url 'blog-detail' blog.id %}" style="text-decoration:none;color:black">
+   
+    
+    <button><a href="{%url 'create-blog' %}">Create a new Blog!</a></button>
+
+     <h1>All Blogs</h1>
+     {{object_list}}
+    {% for blog in object_list %}
+    <a href="{% url 'blogdetails' blog.id %}" style="text-decoration:none;color:black">
       <div>
        <span>{{forloop.counter}}</span> <h2>{{blog.title}}</h2>
         <h4>{{blog.sub_title}}</h4>
       </div>
       </a>
     {% endfor %}
-    {% endif %}
+    
   </body>
 </html>
